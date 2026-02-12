@@ -65,5 +65,5 @@ The main goal of this project is to educate users about social engineering threa
 ---
 
 ## 👨‍🎓 Developed By
-Sathwik Adepu  
+GROUP - 1  
 Diploma Project – 2026
