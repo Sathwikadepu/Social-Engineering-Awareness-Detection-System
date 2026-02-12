@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAFECLICK | Social Engineering Awareness & Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="background-globes"></div>
+
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-shield-halved"></i> SAFECLICK
+        </div>
+        <nav id="main-nav">
+            <button class="nav-btn active" onclick="showSection('home')">Home</button>
+            <button class="nav-btn" onclick="showSection('awareness')">Awareness</button>
+            <button class="nav-btn" onclick="showSection('catalog')">Threat Catalog</button>
+            <button class="nav-btn" onclick="showSection('analyzer')">Detection</button>
+            <button class="nav-btn" onclick="showSection('tips')">Safety Tips</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HOME SECTION -->
+        <section id="home" class="section active-section">
+            <div class="hero-content">
+                <h1>Stay Safe Before You <span class="highlight">Click.</span></h1>
+                <p class="subtitle">Advanced AI-powered detection for Phishing URLs, Smishing, and Social Engineering
+                    attacks.</p>
+                <div class="hero-actions">
+                    <button class="cta-btn primary" onclick="showSection('analyzer')">Analyze a Link <i
+                            class="fa-solid fa-arrow-right"></i></button>
+                    <button class="cta-btn secondary" onclick="showSection('awareness')">Learn Attacks <i
+                            class="fa-solid fa-book-open"></i></button>
+                </div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fa-solid fa-robot"></i>
+                    <h3>AI Detection</h3>
+                    <p>Instantly analyze links and messages for malicious patterns.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <h3>Awareness</h3>
+                    <p>Learn how hackers manipulate human psychology.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-comments"></i>
+                    <h3>AI Chatbot</h3>
+                    <p>Get instant answers to your security doubts.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- AWARENESS SECTION -->
+        <section id="awareness" class="section hidden">
+            <h2>Social Engineering Awareness</h2>
+            <p class="section-intro">Social engineering is the art of manipulating people so they give up confidential
+                information. The types of information these criminals are seeking can vary, but when individuals are
+                targeted the criminals are usually trying to trick you into giving them your passwords or bank
+                information.</p>
+
+            <div class="info-block">
+                <h3><i class="fa-solid fa-brain"></i> Psychology of Attacks</h3>
+                <p>Attackers use <strong>fear, urgency, and authority</strong> to bypass your rational thinking. For
+                    example, a message saying "Your account is blocked!" triggers panic, making you click without
+                    checking.</p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <h3>Urgency</h3>
+                    <p>"Act now or lose access!" - Designed to make you rush.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-user-secret"></i>
+                    <h3>Authority</h3>
+                    <p>Impersonating banks, FBI, or CEOs to demand compliance.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-face-sad-tear"></i>
+                    <h3>Fear</h3>
+                    <p>Threatening legal action or financial loss.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- THREAT CATALOG SECTION -->
+        <section id="catalog" class="section hidden">
+            <h2>Threat Catalog</h2>
+            <div class="catalog-grid">
+                <div class="catalog-card">
+                    <h3>🎣 Phishing</h3>
+                    <p>Fraudulent emails appearing to be from reputable companies to induce individuals to reveal
+                        personal information.</p>
+                    <div class="example-box"><strong>Example:</strong> "Confirm your Apple ID immediately."</div>
+                </div>
+                <div class="catalog-card">
+                    <h3>📱 Smishing</h3>
+                    <p>Phishing via SMS. Text messages enticing users to click malicious links.</p>
+                    <div class="example-box"><strong>Example:</strong> "Bank Alert: $500 debited. Click to dispute."
+                    </div>
+                </div>
+                <div class="catalog-card">
+                    <h3>📞 Vishing</h3>
+                    <p>"Voice Phishing". Fraudulent phone calls aiming to trick victims into revealing critical data.
+                    </p>
+                    <div class="example-box"><strong>Example:</strong> "This is Amazon Support. Someone ordered an
+                        iPhone..."</div>
+                </div>
+                <div class="catalog-card">
+                    <h3>🎁 Baiting</h3>
+                    <p>Promising a reward (like a free movie download or USB drive) to infect devices with malware.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DETECTION SECTION (Existing Analyzer) -->
+        <section id="analyzer" class="section hidden">
+            <div class="glass-panel">
+                <h2>Threat Analyzer</h2>
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab('url')"><i class="fa-solid fa-link"></i> Check
+                        URL</button>
+                    <button class="tab-btn" onclick="switchTab('message')"><i class="fa-solid fa-envelope"></i> Check
+                        Message</button>
+                </div>
+
+                <div class="input-area">
+                    <textarea id="input-content" placeholder="Paste the suspicious URL here..."></textarea>
+                    <div class="actions">
+                        <button id="analyze-btn" onclick="analyzeContent()">Analyze Threat <i
+                                class="fa-solid fa-radar"></i></button>
+                    </div>
+                </div>
+
+                <div id="result-area" class="hidden">
+                    <div class="loader hidden" id="loader">
+                        <div class="scanner"></div>
+                        <p>Scanning threats...</p>
+                    </div>
+
+                    <div id="result-content" class="hidden">
+                        <div class="score-circle">
+                            <svg viewBox="0 0 36 36" class="circular-chart">
+                                <path class="circle-bg"
+                                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path class="circle" stroke-dasharray="0, 100"
+                                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <text x="18" y="20.35" class="percentage">0</text>
+                            </svg>
+                            <div class="risk-label" id="risk-label">SAFE</div>
+                        </div>
+
+                        <div class="details-panel">
+                            <h3 id="recommendation-title">Analysis Complete</h3>
+                            <p id="recommendation-text">No threats detected.</p>
+                            <ul id="analysis-details"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SAFETY TIPS SECTION -->
+        <section id="tips" class="section hidden">
+            <h2>Learning & Safety Tips</h2>
+            <div class="tips-container">
+                <div class="tip-column">
+                    <h3>✅ Do's</h3>
+                    <ul>
+                        <li>Verify the sender's email address carefully.</li>
+                        <li>Hover over links before clicking to see the real URL.</li>
+                        <li>Use Two-Factor Authentication (2FA).</li>
+                        <li>Keep your software and antivirus updated.</li>
+                    </ul>
+                </div>
+                <div class="tip-column">
+                    <h3>❌ Don'ts</h3>
+                    <ul>
+                        <li>Don't click links in unexpected emails/SMS.</li>
+                        <li>Don't download attachments from unknown sources.</li>
+                        <li>Don't panic if an email claims urgency. Verify first.</li>
+                        <li>Don't reuse passwords across different sites.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- CHATBOT WIDGET -->
+    <div id="chatbot-widget">
+        <button id="chatbot-toggle" onclick="toggleChat()"><i class="fa-solid fa-robot"></i></button>
+        <div id="chat-window" class="hidden">
+            <div class="chat-header">
+                <h3>SAFECLICK Assistant</h3>
+                <button onclick="toggleChat()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="chat-messages">
+                <div class="message bot-message">Hello! I can help you identify phishing or answer security questions.
+                    Ask me anything!</div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="user-msg" placeholder="Type a message..." onkeypress="handleChatInput(event)">
+                <button onclick="sendChatMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 SAFECLICK Project. Developed for Educational Purposes.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
